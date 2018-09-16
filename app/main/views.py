@@ -13,14 +13,6 @@ def index():
     return render_template('index.html')
 
 
-
-
-@main.route('/')
-def index():
-
-    return render_template('index.html')
-
-
 @main.route('/user/<uname>')
 @login_required
 def profile(uname):
