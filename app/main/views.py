@@ -14,7 +14,7 @@ def index():
 
 @main.route('/blog', methods = ['GET','POST'])
 @login_required
-def technology():
+def blog():
     form = BlogForm()
     title = 'Blog'
     if form.validate_on_submit():
@@ -24,7 +24,7 @@ def technology():
         db.session.commit()
         return redirect(url_for('.blogs'))
 
-    return render_template("index.html", title = title, blogform = form)
+    return render_template("blog.html", title = title, blogform = form)
 
 
 
@@ -32,26 +32,22 @@ def technology():
 @login_required
 def blogid(id):
 
-    technology = Technology.query.get(id)
-    form = CommentTPitchForm()
+    blog = Blog.query.get(id)
+    form = BlogComForm()
     if form.validate_on_submit():
-        techcom = form.techcom.data
-        new_techcom = TechCom(techcom=techcom, tech_id=id, user=current_user)
-        new_techcom.save_techcom()
+        blogcom = form.blogcom.data
+        new_blogcom = BlogCom(blogcom=blogcom, blog_id=id, user=current_user)
+        new_blogcom.save_blogcom()
 
-    techcom = TechCom.query.filter_by(tech_id=id).all()
-    return render_template('technology/techies.html',techform=form, techcomments = techcom, technology=technology)
+    blogcom = BlogCom.query.filter_by(blog_id=id).all()
+    return render_template('blog.html',blogform=form, blogcomments = blogcom, blog=blog)
 
-@main.route('/technologies')
+@main.route('/blogs')
 @login_required
 def blogs():
-    title = 'all techpiches'
-    pitches = Technology.query.order_by(Technology.id).all()
-    return render_template("technology/tech.html", title=title, pitches=pitches )
-
-
-
-
+    title = 'blog comments'
+    blogs = Blog.query.order_by(Blog.id).all()
+    return render_template("blog.html", title=title, blogs=blogs )
 
 
 
