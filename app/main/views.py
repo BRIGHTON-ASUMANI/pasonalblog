@@ -12,6 +12,55 @@ def index():
 
     return render_template('index.html')
 
+@main.route('/blog', methods = ['GET','POST'])
+@login_required
+def technology():
+    form = TPitchForm()
+    title = 'Blog'
+    if form.validate_on_submit():
+        blog = form.blog.data
+        new_technology = Technology(pitch=pitch, user=current_user)
+        db.session.add(new_technology)
+        db.session.commit()
+        return redirect(url_for('.blogs'))
+
+    return render_template("technology/technology.html", title = title, tpitch_form= form)
+
+
+
+@main.route('/technology/<int:id>',  methods=['GET', 'POST'])
+@login_required
+def techid(id):
+
+    technology = Technology.query.get(id)
+    form = CommentTPitchForm()
+    if form.validate_on_submit():
+        techcom = form.techcom.data
+        new_techcom = TechCom(techcom=techcom, tech_id=id, user=current_user)
+        new_techcom.save_techcom()
+
+    techcom = TechCom.query.filter_by(tech_id=id).all()
+    return render_template('technology/techies.html',techform=form, techcomments = techcom, technology=technology)
+
+@main.route('/technologies')
+@login_required
+def blogs():
+    title = 'all techpiches'
+    pitches = Technology.query.order_by(Technology.id).all()
+    return render_template("technology/tech.html", title=title, pitches=pitches )
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @main.route('/user/<uname>')
 @login_required

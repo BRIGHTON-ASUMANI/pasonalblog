@@ -5,3 +5,13 @@ from wtforms.validators import Required
 class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us about you.',validators = [Required()])
     submit = SubmitField('Submit')
+
+
+class BlogForm(FlaskForm):
+    blog = TextAreaField('Tell us about you.',validators = [Required()])
+    submit = SubmitField('Submit')
+
+
+class BlogComForm(FlaskForm):
+    blog = TextAreaField('Tell us about you.',validators = [Required()])
+    submit = SubmitField('Submit')
