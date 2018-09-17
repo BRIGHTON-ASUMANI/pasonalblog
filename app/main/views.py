@@ -15,22 +15,22 @@ def index():
 @main.route('/blog', methods = ['GET','POST'])
 @login_required
 def technology():
-    form = TPitchForm()
+    form = BlogForm()
     title = 'Blog'
     if form.validate_on_submit():
         blog = form.blog.data
-        new_technology = Technology(pitch=pitch, user=current_user)
-        db.session.add(new_technology)
+        new_blog = Blog(blog=blog, user=current_user)
+        db.session.add(new_blog)
         db.session.commit()
         return redirect(url_for('.blogs'))
 
-    return render_template("technology/technology.html", title = title, tpitch_form= form)
+    return render_template("index.html", title = title, blogform = form)
 
 
 
-@main.route('/technology/<int:id>',  methods=['GET', 'POST'])
+@main.route('/blog/<int:id>',  methods=['GET', 'POST'])
 @login_required
-def techid(id):
+def blogid(id):
 
     technology = Technology.query.get(id)
     form = CommentTPitchForm()

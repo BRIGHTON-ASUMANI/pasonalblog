@@ -43,7 +43,7 @@ class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     blog = db.Column(db.String(255))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-    tech = db.relationship('TechCom', backref='use', lazy='dynamic')
+    blog = db.relationship('BlogCom', backref='use', lazy='dynamic')
 
     def save_blog(self):
         db.session.add(self)
@@ -55,6 +55,6 @@ class BlogCom(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     blog_id = db.Column(db.Integer, db.ForeignKey("blog.id"))
 
-    def save_techcom(self):
+    def save_blogcom(self):
         db.session.add(self)
         db.session.commit()

@@ -13,5 +13,5 @@ class BlogForm(FlaskForm):
 
 
 class BlogComForm(FlaskForm):
-    blog = TextAreaField('Tell us about you.',validators = [Required()])
+    blogcom = TextAreaField('Tell us about you.',validators = [Required()])
     submit = SubmitField('Submit')
