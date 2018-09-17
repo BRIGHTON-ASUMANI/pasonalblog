@@ -85,10 +85,11 @@ input[type=text]:focus, input[type=password]:focus {
        <div class="col-md-4 container-fluid">
 
          {% for blogcomments in blogcomments %}
-             <h3>{{blogcomments.blogcom}}</h3>
-
+             <blockquote>{{blogcomments.blogcom}}</br>
+<a href="#"><span class=" glyphicon glyphicon-thumbs-up"></span></a> &nbsp; <a href="#"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+        </blockquote>
          {% endfor %}
-<span class="glyphicon glyphicon-like"></span> &nbsp; <span class="glyphicon glyphicon-dislike"></span>
+
  </div>
 </section>
 
