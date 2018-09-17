@@ -8,10 +8,10 @@ class UpdateProfile(FlaskForm):
 
 
 class BlogForm(FlaskForm):
-    blog = TextAreaField('Tell us about you.',validators = [Required()])
+    blog = TextAreaField('Please write your blog.',validators = [Required()])
     submit = SubmitField('Submit')
 
 
 class BlogComForm(FlaskForm):
-    blogcom = TextAreaField('Tell us about you.',validators = [Required()])
+    blogcom = TextAreaField('You can comment your blog',validators = [Required()])
     submit = SubmitField('Submit')
