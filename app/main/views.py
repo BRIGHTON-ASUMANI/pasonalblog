@@ -16,16 +16,15 @@ def index():
 @login_required
 def blog():
     form = BlogForm()
-    title = 'Blog'
+    title = 'Blog pitches'
     if form.validate_on_submit():
         blog = form.blog.data
         new_blog = Blog(blog=blog, user=current_user)
         db.session.add(new_blog)
         db.session.commit()
-        return redirect(url_for('.blogs'))
+        return redirect(url_for('.allblogpitches'))
 
-    return render_template("blog.html", title = title, blogform = form)
-
+    return render_template("blog.html", title = title, blogsform= form)
 
 
 @main.route('/blog/<int:id>',  methods=['GET', 'POST'])
@@ -40,22 +39,14 @@ def blogid(id):
         new_blogcom.save_blogcom()
 
     blogcom = BlogCom.query.filter_by(blog_id=id).all()
-    return render_template('blog.html',blogform=form, blogcomments = blogcom, blog=blog)
+    return render_template('blogies.html',blogform=form, blogcomments = blogcom, blog=blog)
 
-@main.route('/blogs')
+@main.route('/blogies')
 @login_required
-def blogs():
-    title = 'blog comments'
+def allblogpitches():
+    title = 'all blogpiches'
     blogs = Blog.query.order_by(Blog.id).all()
-    return render_template("blog.html", title=title, blogs=blogs )
-
-
-
-
-
-
-
-
+    return render_template("blo.html", title=title, blogs=blogs )
 
 
 @main.route('/user/<uname>')

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
 <style>
 body, html {
@@ -23,6 +24,7 @@ body, html {
     background-size: cover;
     position: relative;
 }
+
 
 /* Add styles to the form container */
 .container {
@@ -71,13 +73,16 @@ input[type=text]:focus, input[type=password]:focus {
   <div class="row">
   <div class="col-md-2"> </div>
         <div class="col-md-8">
-              <img src="{{url_for('static',filename='images/technology.png')}}" class = 'img-responsive' alt="rel3" style="width:50%;">
-            {{wtf.quick_form(blogsform)}}
-          </div>
+            <h1>All the blogs posted</h1>
+  <a href="/technology" >Write a pitch</a></br>
+  {% for blog in blogs %}
+<a href="/technology/{{technology.id}}">{{blog.blog}}</a>
+<h1>{{blog.user.username}}</h1>
+  {% endfor %}
 {{simplemde.load}}
+      </div>
+
        <div class="col-md-2"> </div>
-
-
 </div>
 </div>
 </div>

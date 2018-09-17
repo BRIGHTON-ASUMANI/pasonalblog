@@ -1,23 +1,4 @@
-<style>
-input[type=text] {
-    width: 130px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    background-image: url('searchicon.png');
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-}
 
-input[type=text]:focus {
-    width: 100%;
-}
-</style>
 <div class="navbar navbar-default navbar-inverse"  style='margin-bottom: 0px;' role="navigation" id="navigate">
 <div class="container-fluid">
   <div class="navbar-header">
@@ -27,21 +8,25 @@ input[type=text]:focus {
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-    <a class="navbar-brand" href="/"> <img src="{{url_for('static',filename='images/pic.png')}}" style="height:25px;"></a>
+    <a class="navbar-brand" href="/"> <img src="{{url_for('static',filename='images/blog.png')}}" style="height:25px;"></a>
   </div>
 
   <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
               <li><a href="/">Home</a></li>
               </ul>
+              <ul class="nav navbar-nav">
+                  <li><a href="/blog">Create a blog</a></li>
+                  </ul>
+
 
     <ul class="nav navbar-nav navbar-right">
       {% if current_user.is_authenticated %}
            <li><a href="{{url_for('main.profile',uname=current_user.username)}}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
 
-     <li><form>
+     <!-- <li><form>
        <input type="text" name="search" placeholder="Search..">
-     </form></li>
+     </form></li> -->
 
       <li><a href="{{url_for('auth.logout')}}"><span class="glyphicon glyphicon-log-out"></span> Sign out </a></li>
       {% else %}

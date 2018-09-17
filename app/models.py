@@ -18,7 +18,6 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String())
     blog = db.relationship('Blog', backref='user', lazy='dynamic')
     blogcom = db.relationship('BlogCom', backref='user', lazy='dynamic')
-
     @property
     def password(self):
         raise AttributeError('You can not read the password Attribute')
@@ -37,6 +36,7 @@ class User(UserMixin,db.Model):
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
+
 
 class Blog(db.Model):
     __tablename__ = 'blog'

@@ -66,15 +66,29 @@ input[type=text]:focus, input[type=password]:focus {
 </head>
 
 
+
+
+
+
 <div classs='container'>
 <div class="bg-img">
   <div class="row">
   <div class="col-md-2"> </div>
         <div class="col-md-8">
-              <img src="{{url_for('static',filename='images/technology.png')}}" class = 'img-responsive' alt="rel3" style="width:50%;">
-            {{wtf.quick_form(blogsform)}}
-          </div>
+            <h1>Technology</h1>
+            {{technology.pitch}}
+
+          {% for techcomments in techcomments %}
+              <h3>{{techcomments.techcom}}</h3>
+          {% endfor %}
+          <h1> Comment Technology pitch</h1>
+          {{ wtf.quick_form(techform) }}
+
+          <!-- {%for techcomments in techcom %}
+              <h1>{{techcomments.techcom}}</h1>
+          {%endfor%} -->
 {{simplemde.load}}
+          </div>
        <div class="col-md-2"> </div>
 
 
