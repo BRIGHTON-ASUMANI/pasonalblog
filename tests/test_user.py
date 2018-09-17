@@ -30,7 +30,7 @@ def tearDown(self):
 def test_check_instance_variables(self):
         self.assertEquals(self.new_blog.blog_id,12345)
         self.assertEquals(self.new_blog.blog,'enter anything')
-        self.assertEquals(self.new_blog.information,"./static/photos/image.png")
+
 
 def test_save_blog(self):
         self.new_blog.save_blog()
