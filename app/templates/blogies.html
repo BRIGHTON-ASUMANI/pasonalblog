@@ -67,30 +67,30 @@ input[type=text]:focus, input[type=password]:focus {
 
 
 
-
-
-
-<div classs='container'>
+<div classs='container-fluid'>
 <div class="bg-img">
+
+<section>
   <div class="row">
-  <div class="col-md-2"> </div>
-        <div class="col-md-8">
-            <h1>Technology</h1>
-            {{technology.pitch}}
+  <div class="col-md-4"> <h1>Blog</h1>
+          {{blog.blog}} </div>
+        <div class="col-md-4">
 
-          {% for techcomments in techcomments %}
-              <h3>{{techcomments.techcom}}</h3>
-          {% endfor %}
-          <h1> Comment Technology pitch</h1>
-          {{ wtf.quick_form(techform) }}
+          <h1> Comment Your Blog</h1>
+                 {{ wtf.quick_form(blogform) }}
 
-          <!-- {%for techcomments in techcom %}
-              <h1>{{techcomments.techcom}}</h1>
-          {%endfor%} -->
-{{simplemde.load}}
+          {{simplemde.load}}
+
           </div>
-       <div class="col-md-2"> </div>
+       <div class="col-md-4 container-fluid">
 
+         {% for blogcomments in blogcomments %}
+             <h3>{{blogcomments.blogcom}}</h3>
+
+         {% endfor %}
+<span class="glyphicon glyphicon-like"></span> &nbsp; <span class="glyphicon glyphicon-dislike"></span>
+ </div>
+</section>
 
 </div>
 </div>

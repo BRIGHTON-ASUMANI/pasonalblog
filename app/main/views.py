@@ -18,11 +18,11 @@ def blog():
     form = BlogForm()
     title = 'Blog pitches'
     if form.validate_on_submit():
-        blog = form.blog.data
-        new_blog = Blog(blog=blog, user=current_user)
+        new_blog = Blog(blog=form.blog.data, user_id=current_user.id)
+
         db.session.add(new_blog)
         db.session.commit()
-        return redirect(url_for('.allblogpitches'))
+        return redirect(url_for('.allblogs'))
 
     return render_template("blog.html", title = title, blogsform= form)
 
@@ -43,10 +43,10 @@ def blogid(id):
 
 @main.route('/blogies')
 @login_required
-def allblogpitches():
+def allblogs():
     title = 'all blogpiches'
     blogs = Blog.query.order_by(Blog.id).all()
-    return render_template("blo.html", title=title, blogs=blogs )
+    return render_template("bio.html", title=title, blogs=blogs )
 
 
 @main.route('/user/<uname>')
